@@ -2,14 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-    @apply bg-base-background
+@layer base{
+
+    html{
+        @apply bg-base-background font-sans
+    }
+
+    h1{
+        @apply text-base-title
+    }
+
+    p{
+        @apply text-base-text
+    }
+
 }
 
-h1{
-    @apply text-base-title
-}
 
-p{
-    @apply text-base-text
-}
+
