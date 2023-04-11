@@ -39,6 +39,13 @@ export const ProfileContainerStyle = styled.div`
         }
         
     }
+
+    img{
+        ${tw`
+            max-w-[148px]
+            rounded-lg
+        `}
+    }
 `
 
 export const ProfileInfoStyle = styled.div`
