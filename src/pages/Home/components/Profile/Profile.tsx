@@ -2,6 +2,7 @@ import { ArrowSquareOut } from "@phosphor-icons/react";
 import { ProfileContainerStyle, ProfileInfoStyle } from "./style";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { api } from "../../../../lib/axios";
 
 
 interface ProfileProps{
@@ -13,15 +14,18 @@ interface ProfileProps{
     html_url: string,
     bio: string
 }
+
 export function Profile(){
 
     const [infoPerfil, setInfoPerfil] = useState<ProfileProps>()
 
     useEffect(() => {
-       axios('http://api.github.com/users/femendesf')
-       .then(response => {
-        setInfoPerfil(response.data)
-       })
+
+        api('/users/femendesf')
+        .then(response => {
+            setInfoPerfil(response.data)
+        })
+
     }, 
     [])
 
@@ -33,7 +37,7 @@ export function Profile(){
                     <div>
                        
                         <h1>{infoPerfil?.name}
-                            <a href={infoPerfil?.html_url}>
+                            <a href={infoPerfil?.html_url} target="_blank">
                                 GITHUB
                                 <ArrowSquareOut size={16} weight="bold"/>
                             </a>

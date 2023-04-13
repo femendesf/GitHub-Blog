@@ -35,7 +35,7 @@ export const PublicationIssueStyle = styled.div`
 
     span{
         ${tw`
-            text-sm 
+            text-xs
             text-base-span 
             h-[22px] 
             leading-loose
@@ -45,6 +45,8 @@ export const PublicationIssueStyle = styled.div`
     p{
         ${tw`
             h-[112px]
+            max-w-[352px]
+            overflow-hidden
         `}
     }
 `

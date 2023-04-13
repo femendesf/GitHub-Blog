@@ -1,23 +1,56 @@
+import { useEffect, useState } from "react"
 import { PublicationIssueStyle, PublicationsContainerStyle } from "./style"
+import { api } from "../../../../lib/axios"
+import { formatDistanceToNow } from "date-fns"
+import { ptBR } from "date-fns/locale"
 
+interface IssuesProps{
+  title: string,
+  body: string,
+  createdAt: string
+}
 export function Publications(){
 
-    const text = "Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn."
+    const [issues, setIssues] = useState<IssuesProps[]>([])
+
+    useEffect(() => {
+      api('/repos/rocketseat-education/reactjs-github-blog-challenge/issues/1')
+      .then(response => {
+          setIssues(state => [...state, 
+            {
+              body: response.data.body,
+              title: response.data.title,
+              createdAt: response.data.created_at
+            }
+          ])
+      })
+      }, [])
 
     return(
         <PublicationsContainerStyle>
+          {issues.map(issues => {
 
-          <PublicationIssueStyle>
-            <div>
-              <h1>JavaScript data types and data structures</h1>
-              <span >Há 1 dia</span>
-            </div>
-            
-            <p>
-              {text.substring(0, text.length -150) + '...'}
-            </p>
-          </PublicationIssueStyle>
+            const dateDifference = formatDistanceToNow(new Date(issues.createdAt), {
+              addSuffix:true,
+              locale: ptBR
+            })
 
+            return(
+              <PublicationIssueStyle>
+                <div>
+                  <h1>{issues.title}</h1>
+                  <span>
+                    {dateDifference.charAt(0).toLocaleUpperCase() + dateDifference.slice(1)}
+                  </span>
+                </div>
+                
+                <p>
+                  {issues.body.substring(0, dateDifference.length +160) + '...'}
+                </p>
+              </PublicationIssueStyle>
+            )
+          })}
         </PublicationsContainerStyle>
     )
 }
+
