@@ -11,21 +11,23 @@ interface IssuesProps{
 }
 export function Publications(){
 
-    const [issues, setIssues] = useState<IssuesProps[]>([])
+  const [issues, setIssues] = useState<IssuesProps[]>([])
 
-    useEffect(() => {
-      api('/repos/rocketseat-education/reactjs-github-blog-challenge/issues/1')
-      .then(response => {
-          setIssues(state => [...state, 
-            {
-              body: response.data.body,
-              title: response.data.title,
-              createdAt: response.data.created_at
-            }
-          ])
-      })
-      }, [])
-
+  useEffect(() => {
+    api('/repos/rocketseat-education/reactjs-github-blog-challenge/issues/1')
+    .then(response => {
+        console.log(`API: ${response}`)
+        setIssues(state => [...state, 
+          {
+            body: response.data.body,
+            title: response.data.title,
+            createdAt: response.data.created_at
+          }
+        ])
+    })
+    }, [])
+      
+    console.log(issues)
     return(
         <PublicationsContainerStyle>
           {issues.map(issues => {
