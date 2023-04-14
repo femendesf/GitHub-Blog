@@ -16,6 +16,9 @@ export const PublicationIssueStyle = styled.div`
         p-8 
         bg-base-post 
         rounded-xl
+        hover:cursor-pointer
+        duration-200
+        hover:scale-110
     `}
 
     div{
@@ -23,6 +26,8 @@ export const PublicationIssueStyle = styled.div`
             flex 
             justify-between 
             mb-5
+            gap-4
+            
         `}
     }
 
@@ -37,8 +42,9 @@ export const PublicationIssueStyle = styled.div`
         ${tw`
             text-xs
             text-base-span 
-            h-[22px] 
-            leading-loose
+            h-[22px]
+            leading-relaxed
+           
         `}
     }
 
