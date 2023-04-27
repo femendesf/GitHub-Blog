@@ -1,7 +1,7 @@
 import tw from 'twin.macro'
 import styled from 'styled-components'
 
-export const SearchContainerStyle = styled.div`
+export const SearchContainerStyle = styled.form`
     ${tw`
         mb-12
         flex
@@ -37,13 +37,19 @@ export const SearchContainerStyle = styled.div`
     }
    
 
-    input{
+    textarea{
         ${tw`
             bg-base-input 
-            h-[50px]
+            max-h-[50px]
             rounded-md 
+
+            whitespace-normal
+            overflow-hidden
+
             py-3 
             px-4 
+            resize-none
+            
             placeholder:text-base-label 
             text-base-text 
 

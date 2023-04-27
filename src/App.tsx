@@ -1,8 +1,12 @@
+import { PublicationsContextProvider } from "./context/PublicationsContext";
 import { Home } from "./pages/Home";
 
 export function App(){
 
   return(
-    <Home/>
+    <PublicationsContextProvider>
+      <Home/>
+    </PublicationsContextProvider>
+    
   )
 }
