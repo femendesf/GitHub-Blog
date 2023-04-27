@@ -1,9 +1,12 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "../lib/axios";
+import { Publications } from "../pages/Home/components/Publication/Publications";
+import { transformWithEsbuild } from "vite";
 
 interface PublicationsContextProps{
     issues: IssuesProps[],
-    fetchIssues: (query?: string) => Promise<void>
+    fetchIssues: (query?: string) => Promise<void>,
+    reloadList: () => void
 }
 
 interface PublicationsContextType{
@@ -17,12 +20,13 @@ interface IssuesProps{
     createdAt: string
 }
 
+    
 export const PublicationsContext = createContext({} as PublicationsContextProps)
 
 export function PublicationsContextProvider({children} : PublicationsContextType){
 
     const [issues, setIssues] = useState<IssuesProps[]>([])
-  
+
     useEffect(() => {
         api('/repos/femendesf/GitHub-BLog/issues')
         .then(response => {
@@ -30,6 +34,7 @@ export function PublicationsContextProvider({children} : PublicationsContextType
              
               return(
                 {
+                  key: item.id,
                   id: item.id,
                   title:item.title,
                   body:item.body,
@@ -44,7 +49,29 @@ export function PublicationsContextProvider({children} : PublicationsContextType
         })
     }, [])
     
-    console.log(issues)
+    console.log(`Issues: ${issues}`)
+
+    function reloadList(){
+      api('/repos/femendesf/GitHub-BLog/issues')
+        .then(response => {
+            const listIssues:IssuesProps[] = response.data.map( (item:any) => {
+             
+              return(
+                {
+                  key: item.id,
+                  id: item.id,
+                  title:item.title,
+                  body:item.body,
+                  createdAt: item.created_at
+                }
+              )
+
+            })
+           
+            setIssues(listIssues)
+           
+        })
+    }
 
     async function fetchIssues(query?: string) {
 
@@ -56,27 +83,27 @@ export function PublicationsContextProvider({children} : PublicationsContextType
             }
           })
 
-          const items = response.data.items.map((item: any) => ({
-            id: item.id,
-            body: item.body,
-            createdAt: item.created_at,
-            title: item.title,
-          }))
+          console.log(`data.items : ${response.data.items}`)
 
-          console.log(response)
-          console.log(items)
+            const items = response.data.items.map((item: any) => ({
+              key: item.id,
+              id: item.id,
+              body: item.body,
+              createdAt: item.created_at,
+              title: item.title,
+            }))
 
-          setIssues(items)
+            setIssues(items)
+          
 
         } catch (error) {
           console.error(error)
         }
 
-       
-      }
+    }
    
     return(
-        <PublicationsContext.Provider value={{issues, fetchIssues}}>
+        <PublicationsContext.Provider value={{issues, fetchIssues, reloadList}}>
             {children}
         </PublicationsContext.Provider>
     )

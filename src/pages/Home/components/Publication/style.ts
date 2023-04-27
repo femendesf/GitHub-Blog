@@ -6,6 +6,7 @@ export const PublicationsContainerStyle = styled.div`
         grid 
         grid-cols-2 
         gap-8
+       
     `}
 `
 
@@ -19,6 +20,7 @@ export const PublicationIssueStyle = styled.div`
         hover:cursor-pointer
         duration-200
         hover:scale-110
+        animate-[opacity_1s]
     `}
 
     div{
@@ -27,7 +29,7 @@ export const PublicationIssueStyle = styled.div`
             justify-between 
             mb-5
             gap-4
-            
+
         `}
     }
 
@@ -40,11 +42,14 @@ export const PublicationIssueStyle = styled.div`
 
     span{
         ${tw`
+            flex
+            items-center
+            justify-end
             text-xs
             text-base-span 
             h-[22px]
             leading-relaxed
-           
+            w-28
         `}
     }
 

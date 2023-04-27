@@ -6,7 +6,7 @@ export function Search(){
 
     const [valueInput, setValueInput] = useState('')
 
-    const {fetchIssues} = useContext(PublicationsContext)
+    const {fetchIssues, issues} = useContext(PublicationsContext)
 
     function handleInputChange(event: ChangeEvent<HTMLTextAreaElement>){
         setValueInput(event.target.value)
@@ -16,15 +16,18 @@ export function Search(){
     function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>){
         if (event.key === 'Enter') {
             fetchIssues(valueInput)
+            event.preventDefault();
+            setValueInput('')
+
         }
     }
-
     return(
         
         <SearchContainerStyle>
+           
             <div>
                 <h1>Publicação</h1>
-                <span className="font-sans">1 publicação</span>
+                <span className="font-sans">{issues.length > 1 ? `${issues.length} publicações` : `${issues.length} publicação`}</span>
             </div>
             
             <textarea
@@ -34,7 +37,6 @@ export function Search(){
                 value={valueInput}
                 onKeyDown={handleKeyDown}
             >
-
             </textarea>
             
         </SearchContainerStyle>
