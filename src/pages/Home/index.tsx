@@ -1,4 +1,4 @@
-import { Header } from "./components/Header/Header"
+import { Header } from "../../layouts/Header"
 import { Profile } from "./components/Profile/Profile"
 import { Publications } from "./components/Publication/Publications"
 import { Search } from "./components/Search/Search"
@@ -9,9 +9,7 @@ export function Home(){
     return(
         
         <HomeContainerStyle>
-            
-            <Header/>
-
+    
             <HomeInfoStyle>
                 <Profile/>
                 <Search/>

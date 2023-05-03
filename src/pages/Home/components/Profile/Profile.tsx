@@ -1,7 +1,7 @@
 import { ArrowSquareOut } from "@phosphor-icons/react";
 import { ProfileContainerStyle, ProfileInfoStyle } from "./style";
 import { useEffect, useState } from "react";
-import axios from "axios";
+
 import { api } from "../../../../lib/axios";
 
 

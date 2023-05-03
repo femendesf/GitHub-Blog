@@ -1,7 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "../lib/axios";
-import { Publications } from "../pages/Home/components/Publication/Publications";
-import { transformWithEsbuild } from "vite";
 
 interface PublicationsContextProps{
     issues: IssuesProps[],

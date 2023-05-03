@@ -30,12 +30,6 @@ export const ProfileContainerStyle = styled.div`
                 text-sm
 
             `}
-
-            svg{
-                ${tw`
-                    
-                `}
-            }
         }
         
     }
