@@ -48,7 +48,7 @@ export function PublicationsContextProvider({children} : PublicationsContextType
     const [buttonMessage, setButtonMessage] = useState(false)
 
     useEffect(() => {
-
+      
       api('/repos/rocketseat-education/reactjs-github-blog-challenge/issues')
       .then(response => {
         console.log(response.data)
@@ -81,11 +81,9 @@ export function PublicationsContextProvider({children} : PublicationsContextType
     }, [])
 
     function reloadList(){
-      
       api('/repos/rocketseat-education/reactjs-github-blog-challenge/issues')
         .then(response => {
 
-          
             const listIssues:IssuesProps[] = response.data.map( (item:any) => {
               
               return(
@@ -96,7 +94,8 @@ export function PublicationsContextProvider({children} : PublicationsContextType
                   title:item.title,
                   body:item.body,
                   created_at: item.created_at,
-                  comments: item.comments
+                  comments: item.comments,
+                  user: item.user.login
                 }
               )
             })
@@ -106,6 +105,7 @@ export function PublicationsContextProvider({children} : PublicationsContextType
     }
 
     async function fetchIssues(query?: string) {
+      
         if(query != ""){
           setButtonMessage(true)
           try {
@@ -120,6 +120,7 @@ export function PublicationsContextProvider({children} : PublicationsContextType
                 body: item.body,
                 created_at: item.created_at,
                 title: item.title,
+                user: item.user.login
               }))
   
               setIssues(items)

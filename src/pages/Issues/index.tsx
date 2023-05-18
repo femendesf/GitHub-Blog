@@ -14,11 +14,10 @@ import { dark } from "react-syntax-highlighter/dist/esm/styles/hljs"
 
 import { useEffect } from 'react';
 
-
 export function Issues(){
 
-    const {issues, infoProfile, numberIssue} = useContext(PublicationsContext)
-    
+    const {issues, numberIssue} = useContext(PublicationsContext)
+
     const Code = ({children, language} : any) => {
         return(
             <div>
@@ -35,10 +34,9 @@ export function Issues(){
 
 
     return(
-        
         <>
             {issues.map(issues => {
-
+                
                 const dateDifference = formatDistanceToNow(new Date(issues.created_at), {
                     addSuffix:true,
                     locale: ptBR

@@ -22,7 +22,6 @@ export function Search(){
             if(valueInput != ''){
                 setMessageSearch(false)
             }
-            
         }
     }
 
@@ -37,6 +36,7 @@ export function Search(){
     function botaoClicado(){
         updateMessageButton(false)
         reloadList()
+        console.log(issues)
     }
 
     return(
