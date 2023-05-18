@@ -2,10 +2,10 @@
 
 
 ## Screen:
-<img src="github\capaProjeto.png" alt="Capa do desafio Coffee Delivery" width="700px"/>
+<img src="github\capaProjeto.png" alt="Capa do desafio Coffee Delivery" width="600px"/>
 
 
-<img src="github\telaPost.png" alt="Capa do desafio Coffee Delivery" width="700px"/>
+<img src="github\telaPost.png" alt="Capa do desafio Coffee Delivery" width="600px"/>
 
 ### Desafio Ignite Rocketseat. 🚀
 
