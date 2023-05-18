@@ -13,7 +13,7 @@
 
 ---
 
-## Biblioteca e Framework:
+## Tools 🔧:
 
 * [React](https://pt-br.reactjs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
