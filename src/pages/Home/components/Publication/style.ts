@@ -61,3 +61,32 @@ export const PublicationIssueStyle = styled.div`
         `}
     }
 `
+
+export const MessagePublicationEmpty = styled.div`
+    ${tw`
+        flex flex-col items-center justify-center gap-4 rounded-md border border-base-border p-10 animate-[opacity_1s]
+    `}
+
+    svg{
+        ${tw`
+            text-blue
+        `}
+    }
+    h1{
+        ${tw`
+            text-xl
+        `}
+    }
+
+    span{
+        ${tw`
+            text-base-text
+        `}
+    }
+
+    button{
+        ${tw`
+            font-bold text-white bg-blue py-2 px-5 rounded-md hover:bg-button_reset
+        `}
+    }
+`

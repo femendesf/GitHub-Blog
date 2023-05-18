@@ -1,41 +1,44 @@
 import { useContext, useEffect, useState } from "react"
-import { PublicationIssueStyle, PublicationsContainerStyle } from "./style"
-import { api } from "../../../../lib/axios"
+import { MessagePublicationEmpty, PublicationIssueStyle, PublicationsContainerStyle } from "./style"
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { PublicationsContext } from "../../../../context/PublicationsContext"
 import { ClipboardText } from "@phosphor-icons/react"
+import { useNavigate } from "react-router-dom"
 
 export function Publications(){
 
-    const {issues, reloadList} = useContext(PublicationsContext)
-    
-    function sendIdIssue(id: number){
-      console.log("clicado")
+    const {issues, reloadList, issueNumber, updateMessageButton} = useContext(PublicationsContext)
+    const navigate = useNavigate()
+
+    function sendIdIssue(number: number){
+      issueNumber(number)
+      navigate(`issues`)
     }
+
 
     if(issues.length <=0 ){
 
+      updateMessageButton(false)
+      
       return (
 
-        <div 
-          className="flex flex-col items-center justify-center gap-4 rounded-md border border-base-border p-10 animate-[opacity_1s]"
-        >
-          <ClipboardText size={60} className="text-blue"/>
-          <h1
-            className="text-xl"
-          >
+        <MessagePublicationEmpty>
+          
+          <ClipboardText size={60}/>
+          <h1>
             Nenhum resultado encontrado!
           </h1>
 
+          <span>Tente fazer uma nova busca ou clique no botão abaixo para recarregar a página</span>
+
           <button 
-            className="text-md font-bold text-white bg-blue py-2 px-5 rounded-md hover:bg-button_reset"
             onClick={reloadList}
           >
             VOLTAR
           </button>
           
-        </div>
+        </MessagePublicationEmpty>
       )
 
     }else{
@@ -43,13 +46,15 @@ export function Publications(){
         <PublicationsContainerStyle>
 
           {issues.map(issues => {
-            const dateDifference = formatDistanceToNow(new Date(issues.createdAt), {
+            const dateDifference = formatDistanceToNow(new Date(issues.created_at), {
               addSuffix:true,
               locale: ptBR
             })
 
+            const truncatedBody = issues.body ? `${issues.body.substring(0, dateDifference.length + 160)}...` : "";
+
             return(
-              <PublicationIssueStyle onClick={() => sendIdIssue(issues.id)}>
+              <PublicationIssueStyle onClick={() => sendIdIssue(issues.number)}>
                 <div key={issues.id}>
                   <h1>{issues.title}</h1>
                   <span>
@@ -58,7 +63,7 @@ export function Publications(){
                 </div>
                 
                 <p>
-                  {issues.body.substring(0, dateDifference.length +160) + '...'}
+                  {truncatedBody}
                 </p>
               </PublicationIssueStyle>
             )

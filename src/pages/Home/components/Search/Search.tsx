@@ -5,12 +5,12 @@ import { PublicationsContext } from "../../../../context/PublicationsContext"
 export function Search(){
 
     const [valueInput, setValueInput] = useState('')
+    const [messageSearch, setMessageSearch] = useState(false)
 
-    const {fetchIssues, issues} = useContext(PublicationsContext)
+    const {fetchIssues, issues, reloadList, buttonMessage, updateMessageButton} = useContext(PublicationsContext)
 
     function handleInputChange(event: ChangeEvent<HTMLTextAreaElement>){
         setValueInput(event.target.value)
-        console.log(event.target.value)  
     }
 
     function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>){
@@ -19,8 +19,26 @@ export function Search(){
             event.preventDefault();
             setValueInput('')
 
+            if(valueInput != ''){
+                setMessageSearch(false)
+            }
+            
         }
     }
+
+    function onFocusTextArea(){
+        setMessageSearch(true)
+    }
+
+    function onBlurTextArea(){
+        setMessageSearch(false)
+    }
+
+    function botaoClicado(){
+        updateMessageButton(false)
+        reloadList()
+    }
+
     return(
         
         <SearchContainerStyle>
@@ -36,9 +54,16 @@ export function Search(){
                 onChange={handleInputChange}
                 value={valueInput}
                 onKeyDown={handleKeyDown}
+                onFocus={onFocusTextArea}
+                onBlur={onBlurTextArea}
+                
             >
             </textarea>
-            
+
+            {messageSearch ? <span className="text-red-400 text-xs">Aperte ENTER para buscar!</span> : ""}
+
+            {buttonMessage ? <button onClick={botaoClicado}>VOLTAR</button>: ''}
+
         </SearchContainerStyle>
       
     )

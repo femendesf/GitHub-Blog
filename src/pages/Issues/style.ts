@@ -9,6 +9,7 @@ export const IssueContainerStyle = styled.main`
         items-center
         justify-center
         w-[864px]
+        animate-[opacity_0.5s]
     `}
 
 `
@@ -23,9 +24,10 @@ export const StyleInfoIssue = styled.div`
         
         bg-base-profile
         w-full
+        
     `}
 
-    section{
+    nav{
 
         ${tw`
             flex
@@ -84,14 +86,47 @@ export const StyleTextIssue = styled.div`
         py-10
         px-8
         gap-6
+        animate-[opacity_1.5s]
     `}
     p{
 
     }
 
-    div{
+
+
+    h1{
         ${tw`
-         text-white`
+            text-white
+        `}
+    }
+
+
+    h2{
+        ${tw`
+            text-blue
+        `}
+    }
+
+    h3{
+        ${tw`
+            text-blue
+            underline
+            font-bold
+        `}
+    }
+
+    li{
+        ${tw`
+            text-base-span
+        `}
+
+        strong{
+            ${tw`
+                text-base-text
+                font-bold
+                underline
+            `}
         }
     }
+
 `

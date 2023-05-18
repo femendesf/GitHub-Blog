@@ -60,4 +60,16 @@ export const SearchContainerStyle = styled.form`
             focus:border-blue
         `}
     }
+
+    button{
+        ${tw`
+            p-2
+            rounded-md
+            text-white
+            mt-3
+            text-sm
+            bg-button_reset
+            hover:bg-blue
+        `}
+    }
 `
