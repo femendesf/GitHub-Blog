@@ -5,6 +5,7 @@ import { PublicationsContext } from "../../context/PublicationsContext"
 
 import ReactMarkdown from 'react-markdown'
 import SyntaxHighlighter from "react-syntax-highlighter"
+import remarkGfm from 'remark-gfm'
 
 import { formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
@@ -74,7 +75,7 @@ export function Issues(){
                             <StyleTextIssue>
                                
                                     <ReactMarkdown 
-                                        
+                                        remarkPlugins={[remarkGfm]}
                                         components={{
                                             code: Code
                                         }}
