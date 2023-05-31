@@ -87,6 +87,7 @@ export const StyleTextIssue = styled.div`
         px-8
         gap-6
         animate-[opacity_1.5s]
+        text-base-label
     `}
     p{
 

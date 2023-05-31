@@ -30,7 +30,7 @@ export function Publications(){
             Nenhum resultado encontrado!
           </h1>
 
-          <span>Tente fazer uma nova busca ou clique no botão abaixo para recarregar a página</span>
+          <span>Tente fazer uma nova busca ou clique no botão abaixo para recarregar a página.</span>
 
           <button 
             onClick={reloadList}
